@@ -1,14 +1,14 @@
-DROP TABLE IF EXISTS public.author CASCADE;
-drop table if exists public.book CASCADE;
+-- drop table if exists public.book CASCADE;
+-- DROP TABLE IF EXISTS public.author CASCADE;
 
-create table public.author
+CREATE TABLE IF NOT EXISTS public.author
 (
     id        serial primary key,
     firstname character varying(255) COLLATE pg_catalog."default",
     lastname  character varying(255) COLLATE pg_catalog."default"
 );
 
-create table public.book
+CREATE TABLE IF NOT EXISTS public.book
 (
     id          serial primary key,
     description text,
