@@ -11,6 +11,7 @@ import jakarta.persistence.*;
 
 /**
  * JPA entity class for "Book"
+ * This class is mapped to the table "book" in the database.
  *
  * @author @bootteam
  */
