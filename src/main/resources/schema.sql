@@ -1,5 +1,5 @@
-drop table if exists public.author;
-drop table if exists public.book;
+DROP TABLE IF EXISTS public.author CASCADE;
+drop table if exists public.book CASCADE;
 
 create table public.author
 (
