@@ -15,9 +15,9 @@ spring:
       ddl-auto: update
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: ${SPRING_DATASOURCE_USERNAME:dev}
-    password: ${SPRING_DATASOURCE_PASSWORD:qwerty}
-    url:  ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/bookdb}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
+    url:  ${SPRING_DATASOURCE_URL:jdbc:postgresql://db:5432/bookdb}
     hikari:
       poolName: Hikari
       auto-commit: false

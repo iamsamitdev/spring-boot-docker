@@ -1,29 +1,41 @@
-version: '3.8'
+# กำหนด network
+networks:
+  spring_network:
+    name: spring_network
+    driver: bridge
 
+# กำหนด service
 services:
-  api:
-    build: .
-    ports:
-      - '8090:8090'
-    container_name: bookapi
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/bookdb
-      - SPRING_DATASOURCE_USERNAME=book-user
-      - SPRING_DATASOURCE_PASSWORD=123456
-    links:
-      - 'db:database'
   db:
     image: postgres:15.2
     container_name: bookdb
     restart: always
     environment:
-      POSTGRES_USER: book-user
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: bookdb
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ./postgresdb:/var/lib/postgresql/data
     ports:
-      - 6432:5432
+      - "6432:5432"
+    networks:
+      - spring_network
+  api:
+    build: .
+    ports:
+      - "8090:8090"
+    container_name: bookapi
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/bookdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123456
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - spring_network
+
+# กำหนด volume
 volumes:
-  db-data:
+  postgresdb:
     driver: local
