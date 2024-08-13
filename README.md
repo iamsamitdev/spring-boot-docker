@@ -18,8 +18,8 @@ Clone the project
 
 👤 **iamsamitdev**
 
-* GitHub: [@iamsamitdev](
-* LinkedIn: [@samitkoyom](www.linkedin.com/in/samit-koyom-72173348)
+* GitHub: [@iamsamitdev](https://github.com/iamsamitdev)
+* LinkedIn: [@samitkoyom](https://linkedin.com/in/samit-koyom-72173348/)
 * Twitter: [@iamsamit](https://x.com/iamsamit)
 
 ## 🚀 About Me
