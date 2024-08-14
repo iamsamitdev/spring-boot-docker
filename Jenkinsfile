@@ -3,8 +3,8 @@ pipeline {
 
     environment {
       MAVEN_ARGS = "-e clean install"
-      dockerContainerName = "bookapi-${ENV}"
-      dockerImageName = "bookapi-api-${ENV}"
+      dockerContainerName = "bookapi_${ENV}"
+      dockerImageName = "bookapi_api_${ENV}"
       SPRING_PROFILES_ACTIVE = "${ENV}"
     }
 

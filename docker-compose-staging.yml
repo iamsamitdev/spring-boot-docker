@@ -8,7 +8,7 @@ networks:
 services:
   stagingdb:
     image: postgres:15.2
-    container_name: bookdb-staging
+    container_name: bookdb_staging
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -21,13 +21,13 @@ services:
     networks:
       - spring_staging_network
   stagingapi:
-    image: bookapi-api-staging"
+    image: bookapi_api_staging"
     build:
       context: .
       dockerfile: Dockerfile-staging
     ports:
       - "9090:9090"
-    container_name: bookapi-staging
+    container_name: bookapi_staging
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://stagingdb:5432/bookdb
       - SPRING_DATASOURCE_USERNAME=postgres
