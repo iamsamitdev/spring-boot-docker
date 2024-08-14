@@ -8,7 +8,7 @@ networks:
 services:
   proddb:
     image: postgres:15.2
-    container_name: bookdb-${ENV}
+    container_name: bookdb-production
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -21,13 +21,13 @@ services:
     networks:
       - spring_production_network
   prodapi:
-    image: bookapi-api-${ENV}"
+    image: bookapi-api-production"
     build:
       context: .
-      dockerfile: Dockerfile-${ENV}
+      dockerfile: Dockerfile-production
     ports:
       - "9191:9191"
-    container_name: bookapi-${ENV}
+    container_name: bookapi-production
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://proddb:5432/bookdb
       - SPRING_DATASOURCE_USERNAME=postgres
