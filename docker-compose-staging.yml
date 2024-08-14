@@ -1,41 +1,45 @@
 # กำหนด network
 networks:
-  spring_network:
-    name: spring_network
+  spring_staging_network:
+    name: spring_staging_network
     driver: bridge
 
 # กำหนด service
 services:
-  db:
+  stagingdb:
     image: postgres:15.2
-    container_name: mybookdb
+    container_name: bookdb-${ENV}
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
       POSTGRES_DB: bookdb
     volumes:
-      - ./pgdb:/var/lib/postgresql/data
+      - ./pgstagingdb:/var/lib/postgresql/data
     ports:
       - "8432:5432"
     networks:
-      - spring_network
-  api:
-    build: .
+      - spring_staging_network
+  stagingapi:
+    image: bookapi-api-${ENV}"
+    build:
+      context: .
+      dockerfile: Dockerfile-${ENV}
     ports:
       - "9090:9090"
-    container_name: mybookapi
+    container_name: bookapi-${ENV}
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/bookdb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stagingdb:5432/bookdb
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=123456
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
     depends_on:
-      - db
+      - stagingdb
     restart: always
     networks:
-      - spring_network
+      - spring_staging_network
 
 # กำหนด volume
 volumes:
-  pgdb:
+  pgstagingdb:
     driver: local

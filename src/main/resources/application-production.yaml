@@ -1,0 +1,7 @@
+server:
+  port: 9191
+
+spring:
+  profiles: production
+  datasource:
+    url:  ${SPRING_DATASOURCE_URL:jdbc:postgresql://proddb:5432/bookdb}
